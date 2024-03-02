@@ -24,9 +24,9 @@ static const int nmaster = 1;        /* 主工作区 窗口数量 */
 static const unsigned int snap = 10;          /* 边缘依附宽度 */
 static const unsigned int baralpha = 0xc0;    /* 状态栏透明度 */
 static const unsigned int borderalpha = 0xdd; /* 边框透明度 */
-static const char *fonts[] = {"JetBrainsMono Nerd Font:style=medium:size=16",
+static const char* fonts[] = {"JetBrainsMono Nerd Font:style=medium:size=16",
                               "monospace:size=16"};
-static const char *colors[][3] = {
+static const char* colors[][3] = {
     /* 颜色设置 ColFg, ColBg, ColBorder */
     [SchemeNorm] = {"#bbbbbb", "#333333", "#444444"},
     [SchemeSel] = {"#ffffff", "#37474F", "#42A5F5"},
@@ -50,8 +50,8 @@ static const unsigned int alphas[][3] = {
 };
 
 /* 自定义脚本位置 */
-static const char *autostartscript = "$DWM/autostart.sh";
-static const char *statusbarscript = "$DWM/statusbar/statusbar.sh";
+static const char* autostartscript = "$DWM/autostart.sh";
+static const char* statusbarscript = "$DWM/statusbar/statusbar.sh";
 
 /* 自定义 scratchpad instance */
 static const char scratchpadname[] = "scratchpad";
@@ -59,7 +59,7 @@ static const char scratchpadname[] = "scratchpad";
 /* 自定义tag名称 */
 /* 自定义特定实例的显示状态 */
 //            ﮸  ﭮ 切
-static const char *tags[] = {
+static const char* tags[] = {
     "",  // tag:0  key:1  desc:terminal1
     "",  // tag:1  key:2  desc:terminal2
     "",  // tag:2  key:3  desc:terminal3
@@ -121,7 +121,7 @@ static const Rule rules[] = {
     {NULL, NULL, "crx_", 0, 1, 0, 0, -1, 0}, // 错误载入时 会有crx_ 浮动
     {NULL, NULL, "broken", 0, 1, 0, 0, -1, 0}, // 错误载入时 会有broken 浮动
 };
-static const char *overviewtag = "OVERVIEW";
+static const char* overviewtag = "OVERVIEW";
 static const Layout overviewlayout = {"舘", overview};
 
 /* 自定义布局 */
@@ -131,14 +131,14 @@ static const Layout layouts[] = {
 };
 
 #define SHCMD(cmd)                                                             \
-  {                                                                            \
-    .v = (const char *[]) { "/bin/sh", "-c", cmd, NULL }                       \
-  }
+    {                                                                          \
+        .v = (const char*[]) { "/bin/sh", "-c", cmd, NULL }                    \
+    }
 #define MODKEY Mod1Mask
 #define TAGKEYS(KEY, TAG, cmd)                                                 \
-  {MODKEY, KEY, view, {.ui = 1 << TAG, .v = cmd}},                             \
-      {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                        \
-      {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},
+    {MODKEY, KEY, view, {.ui = 1 << TAG, .v = cmd}},                           \
+        {MODKEY | ShiftMask, KEY, tag, {.ui = 1 << TAG}},                      \
+        {MODKEY | ControlMask, KEY, toggleview, {.ui = 1 << TAG}},
 
 static Key keys[] = {
     /* modifier            key              function          argument
@@ -376,6 +376,10 @@ static Key keys[] = {
                          选中某个窗口并强制kill
                        */
 
+    TAGKEYS(XK_1, 0, 0) TAGKEYS(XK_2, 1, 0) TAGKEYS(XK_3, 2, 0)
+        TAGKEYS(XK_4, 3, 0) TAGKEYS(XK_5, 4, 0) TAGKEYS(XK_6, 5, 0)
+            TAGKEYS(XK_7, 6, 0) TAGKEYS(XK_8, 7, 0)
+                TAGKEYS(XK_9, 8, 0){MODKEY | ControlMask, XK_r, quit, {1}},
     /* super key : 跳转到对应tag (可附加一条命令
      * 若目标目录无窗口，则执行该命令)
      */
